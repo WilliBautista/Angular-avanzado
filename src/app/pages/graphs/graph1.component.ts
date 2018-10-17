@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-graficas1',
-  templateUrl: './graficas1.component.html'
+  selector: 'app-graph1',
+  templateUrl: './graph1.component.html'
 })
-export class Graficas1Component implements OnInit {
+export class Graph1Component implements OnInit {
 
-  graficos: any = [
+  graphs: any = [
     {
       'labels': ['Con Frijoles', 'Con Natilla', 'Con tocino'],
       'data':  [24, 30, 46],
