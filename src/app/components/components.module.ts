@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 // Components
 import { IncrementComponent } from './increment/increment.component';
-import { GraphDonaComponent } from './graph-dona/graph-dona.component';
+import { GraphDonaComponent } from './graphs/graph-dona.component';
 // Modules
 import { ChartsModule } from 'ng2-charts';
 
