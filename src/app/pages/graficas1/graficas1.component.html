@@ -1,3 +1,10 @@
-<p>
-  graficas1 works!
-</p>
+<div class="row">
+    <div class="col-sm-6" *ngFor="let grafico of graficos; index as i">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center">{{ grafico.leyenda }}</h4>
+                <app-grafico-dona [chartData]="grafico.data" [chartLabels]="grafico.labels" [chartType]="grafico.type"></app-grafico-dona>
+            </div>
+        </div>
+    </div>
+</div>
