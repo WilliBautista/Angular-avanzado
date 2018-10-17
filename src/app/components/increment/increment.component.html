@@ -1,0 +1,18 @@
+<h3>{{ legend }}</h3>
+<div class="input-group">
+
+  <div class="input-group-prepend">
+    <button class="btn btn-primary" type="button" (click)="changeProgress(-5)">
+        <i class="mdi mdi-minus"></i>
+    </button>
+  </div>
+
+  <input type="number" class="form-control" name="progress" aria-label="Example text with button addon" aria-describedby="button-addon1" [(ngModel)]="progress" (ngModelChange)="onChange($event)" min="0" max="100">
+
+  <div class="input-group-prepend">
+    <button class="btn btn-primary" type="button" (click)="changeProgress(+5)">
+      <i class="mdi mdi-plus"></i>
+    </button>
+  </div>
+
+</div>
