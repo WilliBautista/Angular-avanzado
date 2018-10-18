@@ -10,13 +10,15 @@ import { PagesRoutingModule } from './pages-routing.module';
 // Modules
 import { ComponentsModule } from '../components/components.module';
 import { SharedModule } from '../shared/shared.module';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
     ProgressComponent,
-    Graph1Component
+    Graph1Component,
+    AccountSettingsComponent
   ],
   exports: [
     DashboardComponent,
