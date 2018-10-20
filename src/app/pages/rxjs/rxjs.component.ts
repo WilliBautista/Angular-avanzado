@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 import { retry, map, filter } from 'rxjs/operators';
 
 @Component({
@@ -7,11 +7,12 @@ import { retry, map, filter } from 'rxjs/operators';
   templateUrl: './rxjs.component.html',
   styles: []
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent implements OnInit, OnDestroy {
+
+  observable: Subscription;
 
   constructor() {
-
-    this.returnObservable().subscribe(
+    this.observable = this.returnObservable().subscribe(
       number => console.log('Listen: ', number),
       error => console.log('Error en el observable: ', error),
       () => console.log('Observable completo')
@@ -19,6 +20,10 @@ export class RxjsComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.observable.unsubscribe();
   }
 
   returnObservable(): Observable<any> {
@@ -45,8 +50,8 @@ export class RxjsComponent implements OnInit {
         // }
       }, 1000);
     }).pipe(
-      retry(2),
-      map( resp => resp.value ),
+      retry(2), // Retry pipe
+      map( resp => resp.value ), // Map pipe
       filter( value => {
         // Filtrar numeros pares e impares
         if ( (value % 2) === 1 ) {
@@ -56,7 +61,7 @@ export class RxjsComponent implements OnInit {
           // pares
           return false;
         }
-      })
+      }) // Filter pipe
     );
   }
 

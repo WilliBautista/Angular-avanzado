@@ -15,13 +15,64 @@ const PAGES_ROUTES: Routes = [
     path: '',
     component: PagesComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'progress', component: ProgressComponent },
-      { path: 'graph1', component: Graph1Component },
-      { path: 'promesa', component: PromesaComponent },
-      { path: 'rxjs', component: RxjsComponent },
-      { path: 'account-settings', component: AccountSettingsComponent },
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+      { path: 'dashboard',
+        component: DashboardComponent,
+        data: {
+          title: 'Dashboard',
+          description: 'Tú dashboard configurable',
+          keywords: 'dashboard,cms,adminpro'
+        }
+      },
+      {
+        path: 'progress',
+        component: ProgressComponent,
+        data: {
+          title: 'Barras de rogreso',
+          description: 'Mide el progreso de tus cursos',
+          keywords: 'progress,progreso'
+        }
+      },
+      {
+        path: 'graph1',
+        component: Graph1Component,
+        data: {
+          title: 'Gráficas',
+          description: 'Graficas para las metricas de tus avances',
+          keywords: 'metricas,graficas,graphics'
+        }
+      },
+      {
+        path: 'promesa',
+        component: PromesaComponent,
+        data: {
+          title: 'Promesas',
+          description: 'En esta página se esta ejecutando una promesa',
+          keywords: 'promises,promesas'
+        }
+      },
+      {
+        path: 'rxjs',
+        component: RxjsComponent,
+        data: {
+          title: 'RxJs',
+          description: 'En esta página se esta un observador',
+          keywords: 'observers,observables'
+        }
+      },
+      {
+        path: 'account-settings',
+        component: AccountSettingsComponent,
+        data: {
+          title: 'Ajustes de cuenta',
+          description: 'Configura la interfaz de tu dashboard',
+          keywords: 'settings,adminpro,account'
+        }
+      },
+      {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      }
     ]
   }
 ];
