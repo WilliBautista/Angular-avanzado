@@ -4,7 +4,7 @@ import { SidebarService } from 'src/app/services/service.index';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
 
