@@ -1,5 +1,13 @@
+// Core
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+// Servicios
+import { UserService } from '../services/service.index';
+// Models
+import { User } from '../models/user.model';
+// Other
+import swal from 'sweetalert';
 
 declare function init_plugin();
 @Component({
@@ -11,7 +19,10 @@ export class RegisterComponent implements OnInit {
 
   forma: FormGroup;
 
-  constructor() { }
+  constructor(
+    public _userService: UserService,
+    public router: Router
+  ) { }
 
   validatePassword(form: FormGroup) {
 
@@ -44,16 +55,24 @@ export class RegisterComponent implements OnInit {
 
   registerUser() {
 
-    if (this.forma.valid) {
+    if (!this.forma.value.conditions) {
+      swal('Oops!', 'No ha aceptado los terminos y condiciones', 'warning');
       return;
     }
 
-    if (this.forma.value.conditions) {
-      console.log('Debe aceptar los terminos y condiciones');
+    if (this.forma.invalid) {
       return;
     }
 
-    console.log(this.forma);
+    const USER = new User(
+      this.forma.value.name,
+      this.forma.value.email,
+      this.forma.value.password
+    );
+
+    this._userService.createUser(USER)
+      .subscribe(user => {
+        this.router.navigate(['/login']);
+      });
   }
-
 }

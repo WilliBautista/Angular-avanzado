@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SettingsService } from './services/service.index';
+import * as swal from 'sweetalert';
 
 @Component({
   selector: 'app-root',
