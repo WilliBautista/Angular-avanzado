@@ -13,7 +13,24 @@ import { map } from 'rxjs/operators';
 })
 export class UserService {
 
-  constructor(public http: HttpClient) {}
+  user: User;
+  token: string;
+
+  constructor(public http: HttpClient) {
+    this.verifyStorageData();
+  }
+
+  verifyStorageData() {
+    if (localStorage.getItem('token')) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.token = localStorage.getItem('token');
+      console.log('Login iniciado');
+    } else {
+      this.user = null;
+      this.token = '';
+      console.log('No te haz loguado');
+    }
+  }
 
   createUser(user: User) {
     const URL = LINK_SERVICE + '/user';
