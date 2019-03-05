@@ -15,6 +15,12 @@ import { PromesaComponent } from './promesa/promesa.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
+  imports: [
+    CommonModule,
+    SharedModule,
+    ComponentsModule,
+    PagesRoutingModule
+  ],
   declarations: [
     PagesComponent,
     DashboardComponent,
@@ -28,12 +34,6 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     DashboardComponent,
     ProgressComponent,
     Graph1Component
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    ComponentsModule,
-    PagesRoutingModule
   ]
 })
 export class PagesModule { }

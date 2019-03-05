@@ -3,7 +3,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 // Services
-import { SettingsService, SidebarService, UserService, LoginGuard } from './service.index';
+import {
+  SettingsService,
+  SidebarService,
+  UserService,
+  LoginGuard
+} from './service.index';
 
 @NgModule({
   imports: [
@@ -11,10 +16,10 @@ import { SettingsService, SidebarService, UserService, LoginGuard } from './serv
     HttpClientModule
   ],
   providers: [
+    LoginGuard,
     SettingsService,
     SidebarService,
-    UserService,
-    LoginGuard
+    UserService
   ]
 })
 export class ServiceModule { }

@@ -1,6 +1,7 @@
 // Core
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 // Models
 import { User } from 'src/app/models/user.model';
 // Config
@@ -16,7 +17,10 @@ export class UserService {
   user: User;
   token: string;
 
-  constructor(public http: HttpClient) {
+  constructor(
+    public http: HttpClient,
+    public _router: Router
+  ) {
     this.verifyStorageData();
   }
 
@@ -24,12 +28,31 @@ export class UserService {
     if (localStorage.getItem('token')) {
       this.user = JSON.parse(localStorage.getItem('user'));
       this.token = localStorage.getItem('token');
-      console.log('Login iniciado');
+      return true;
     } else {
       this.user = null;
       this.token = '';
-      console.log('No te haz loguado');
+      return false;
     }
+  }
+
+  saveStorage( id: string, token: string, user: User ) {
+    localStorage.setItem('id', id);
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+
+    this.user = user;
+    this.token = token;
+  }
+
+  logout() {
+    this.token = '';
+    this.user = null;
+    localStorage.removeItem('id');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    this._router.navigate(['/login']);
   }
 
   createUser(user: User) {
@@ -56,10 +79,7 @@ export class UserService {
     return this.http.post(URL, user)
       .pipe(
         map((resp: any) => {
-          localStorage.setItem( 'id', resp.id );
-          localStorage.setItem( 'token', resp.token );
-          localStorage.setItem( 'user', JSON.stringify(resp.userDB) );
-
+          this.saveStorage(resp.id, resp.token, user);
           return resp.userDB;
         })
       );
