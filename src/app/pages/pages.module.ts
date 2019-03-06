@@ -13,13 +13,16 @@ import { SharedModule } from '../shared/shared.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesaComponent } from './promesa/promesa.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+// Pipes
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     ComponentsModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    PipesModule
   ],
   declarations: [
     PagesComponent,

@@ -79,7 +79,7 @@ export class UserService {
     return this.http.post(URL, user)
       .pipe(
         map((resp: any) => {
-          this.saveStorage(resp.id, resp.token, user);
+          this.saveStorage(resp.id, resp.token, resp.userDB);
           return resp.userDB;
         })
       );
