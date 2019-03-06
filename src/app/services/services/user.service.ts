@@ -84,4 +84,16 @@ export class UserService {
         })
       );
   }
+
+  loginGoogle(token: string) {
+    const URL = LINK_SERVICE + '/login/google';
+
+    return this.http.post(URL, { token: token })
+      .pipe(
+        map((resp: any) => {
+          this.saveStorage(resp.userDB._id, resp.token, resp.userDB);
+          return resp.userDB;
+        })
+      );
+  }
 }
