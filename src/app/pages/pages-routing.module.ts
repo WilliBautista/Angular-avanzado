@@ -9,6 +9,7 @@ import { Graph1Component } from './graphs/graph1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesaComponent } from './promesa/promesa.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
 // Guards
 import { LoginGuard } from '../services/guards/login.guard';
 
@@ -70,6 +71,11 @@ const PAGES_ROUTES: Routes = [
           description: 'Configura la interfaz de tu dashboard',
           keywords: 'settings,adminpro,account'
         }
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: { title: 'Perfil de usuario' }
       },
       {
         path: '',

@@ -55,10 +55,9 @@ export class LoginComponent implements OnInit {
   attachSignin( element ) {
     this.auth2.attachClickHandler(element, {}, googleUser => {
       const TOKEN = googleUser.getAuthResponse().id_token;
+
       this._userService.loginGoogle(TOKEN)
-        .subscribe(user => {
-          this._router.navigate(['/dashboard']);
-        });
+        .subscribe(() => window.location.href = '#/dashboard' );
     });
   }
 
@@ -75,8 +74,6 @@ export class LoginComponent implements OnInit {
     );
 
     this._userService.login(USER, form.value.rememberme)
-      .subscribe(user => {
-        this._router.navigate(['/dashboard']);
-      });
+      .subscribe(() => this._router.navigate(['/dashboard']) );
   }
 }

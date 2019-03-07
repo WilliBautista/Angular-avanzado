@@ -6,13 +6,14 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graph1Component } from './graphs/graph1.component';
-import { PagesRoutingModule } from './pages-routing.module';
-// Modules
-import { ComponentsModule } from '../components/components.module';
-import { SharedModule } from '../shared/shared.module';
+import { ProfileComponent } from './profile/profile.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesaComponent } from './promesa/promesa.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+// Modules
+import { PagesRoutingModule } from './pages-routing.module';
+import { ComponentsModule } from '../components/components.module';
+import { SharedModule } from '../shared/shared.module';
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
 
@@ -31,7 +32,8 @@ import { PipesModule } from '../pipes/pipes.module';
     Graph1Component,
     AccountSettingsComponent,
     PromesaComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   exports: [
     DashboardComponent,

@@ -80,7 +80,7 @@ export class UserService {
       .pipe(
         map((resp: any) => {
           this.saveStorage(resp.id, resp.token, resp.userDB);
-          return resp.userDB;
+          return true;
         })
       );
   }
@@ -92,7 +92,7 @@ export class UserService {
       .pipe(
         map((resp: any) => {
           this.saveStorage(resp.userDB._id, resp.token, resp.userDB);
-          return resp.userDB;
+          return true;
         })
       );
   }
