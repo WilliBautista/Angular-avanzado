@@ -8,6 +8,8 @@ import { User } from 'src/app/models/user.model';
 import { LINK_SERVICE } from '../../config/config';
 // RxJS
 import { map } from 'rxjs/operators';
+// Service
+import { FileService } from '../upload/file.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +20,9 @@ export class UserService {
   token: string;
 
   constructor(
-    public http: HttpClient,
-    public _router: Router
+    public _http: HttpClient,
+    public _router: Router,
+    public _fileService: FileService
   ) {
     this.verifyStorageData();
   }
@@ -48,7 +51,7 @@ export class UserService {
   createUser(user: User) {
     const URL = `${LINK_SERVICE}/user`;
 
-    return this.http.post(URL, user)
+    return this._http.post(URL, user)
       .pipe(
         map((resp: any) => {
           swal('Listo!', `El usuario ${ user.email } ha sido creado`, 'success');
@@ -60,7 +63,7 @@ export class UserService {
   updateUser(user: User) {
     const URL = `${LINK_SERVICE}/user/${ user._id}?token=${this.token}`;
 
-    return this.http.put(URL, user)
+    return this._http.put(URL, user)
       .pipe(
         map((resp: any) => {
           const USERDB: User = resp.user;
@@ -82,7 +85,7 @@ export class UserService {
       localStorage.removeItem('email');
     }
 
-    return this.http.post(URL, user)
+    return this._http.post(URL, user)
       .pipe(
         map((resp: any) => {
           this.saveStorage(resp.id, resp.token, resp.userDB);
@@ -95,7 +98,7 @@ export class UserService {
   loginGoogle(token: string) {
     const URL = `${LINK_SERVICE}/login/google`;
 
-    return this.http.post(URL, { token: token })
+    return this._http.post(URL, { token: token })
       .pipe(
         map((resp: any) => {
           this.saveStorage(resp.userDB._id, resp.token, resp.userDB);
@@ -113,5 +116,15 @@ export class UserService {
     localStorage.removeItem('user');
 
     this._router.navigate(['/login']);
+  }
+
+  updateImage( file: File, id: string ) {
+    this._fileService.uploadImage(file, 'user', id)
+      .then((resp: any) => {
+        console.log(resp);
+      })
+      .catch((resp: any) => {
+        console.log(resp);
+      });
   }
 }

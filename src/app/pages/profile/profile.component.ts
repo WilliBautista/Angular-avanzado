@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 // Components
 import { UserService } from '../../services/service.index';
-import { log } from 'util';
 
 
 @Component({
@@ -14,6 +13,7 @@ import { log } from 'util';
 export class ProfileComponent implements OnInit {
 
   user: User;
+  fileImage: File;
 
   constructor( public _userService: UserService ) {
     this.user = this._userService.user;
@@ -30,7 +30,21 @@ export class ProfileComponent implements OnInit {
     }
 
     this._userService.updateUser(this.user)
-      .subscribe(resp => {});
+      .subscribe();
+  }
+
+  selectImage( file: File ) {
+
+    if ( !file ) {
+      this.fileImage = null;
+      return;
+    }
+
+    this.fileImage = file;
+  }
+
+  uploadImage() {
+    this._userService.updateImage(this.fileImage, this.user._id);
   }
 
 }
