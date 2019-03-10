@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 // Components
 import { UserService } from '../../services/service.index';
+import swal from 'sweetalert';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   fileImage: File;
+  previewImage: any;
 
   constructor( public _userService: UserService ) {
     this.user = this._userService.user;
@@ -39,6 +41,17 @@ export class ProfileComponent implements OnInit {
       this.fileImage = null;
       return;
     }
+
+    if (file.type.indexOf('image') < 0) {
+      swal('Oops!', `Archivo no permitido.`, 'error');
+      this.previewImage = null;
+      return;
+    }
+
+    const READER = new FileReader();
+
+    READER.readAsDataURL(file);
+    READER.onloadend = () => this.previewImage = READER.result;
 
     this.fileImage = file;
   }
